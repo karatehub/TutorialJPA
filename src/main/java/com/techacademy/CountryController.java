@@ -65,4 +65,23 @@ public class CountryController {
         return "redirect:/country/list";
     }
     // ----追加ここまで
+
+    @GetMapping("/detail/{code}")
+    public String getCountry2(@PathVariable(name = "code", required = false) String code, Model model) {
+
+        Country country = service.getCountry(code);
+        // Modelに登録
+        model.addAttribute("country", country);
+        // country/detail.htmlに画面移動
+        return "country/detail";
+    }
+    @GetMapping("/delete/{code}")
+    public String getDelete(@PathVariable(name = "code", required = false) String code, Model model) {
+
+        Country country = service.getCountry(code);
+        // Modelに登録
+        model.addAttribute("country", country);
+
+        return "country/delete";
+    }
 }
